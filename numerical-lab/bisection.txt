@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double f(double x) {
+    return x*x*x - 2*x - 5;
+}
+
+int main() {
+    double a = 2, b = 3, m;
+    double eps = 0.0005;
+
+    if (f(a) * f(b) >= 0) {
+        cout << "Invalid interval";
+        return 0;
+    }
+
+    do {
+        m = (a + b) / 2;
+
+        if (f(a) * f(m) < 0)
+            b = m;
+        else
+            a = m;
+
+    } while (fabs(f(m)) > eps);
+
+    cout << "Root = " << m << endl;
+    return 0;
+}
